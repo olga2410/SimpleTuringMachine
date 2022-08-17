@@ -1,4 +1,5 @@
 from stato import TipoStato
+import time
 
 # Le due righe seguenti sono per far funzionare la stampa del log su windows
 import os
@@ -49,3 +50,5 @@ class MacchinaDiTuring:
                 print(self.nastro._nastro[i], end="")
 
         print("]")
+        time.sleep(0.5)
+        os.system('cls')
