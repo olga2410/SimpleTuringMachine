@@ -9,5 +9,5 @@ class Transizione:
         self.direzione = direzione
 
     # Per stampare le clssi per debuggare/capire
-    # def __str__(self):
-    #     return str(self.stato_corrente) + " " + str(self.carattere_corrente) + " " + str(self.nuovo_stato) + " " + str(self.nuovo_carattere) + " " + str(self.direzione)
+    def __str__(self):
+        return str(self.stato_corrente) + " " + str(self.carattere_corrente) + " " + str(self.nuovo_stato) + " " + str(self.nuovo_carattere) + " " + str(self.direzione)

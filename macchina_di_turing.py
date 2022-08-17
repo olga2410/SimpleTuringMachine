@@ -32,6 +32,7 @@ class MacchinaDiTuring:
             # list comprehensions  per ripassare:
             # new_lista = [funzione(x) for x in lista if filtro]
             transizione = next(t for t in self.transizioni if t.stato_corrente == id_stato and t.carattere_corrente == carattere_corrente)
+            print(transizione)
             stato_corrente = next(stato for stato in self.stati if stato.id == transizione.nuovo_stato)
             self.nastro.scrivi(transizione.nuovo_carattere)
             self.nastro.muovere_testa(transizione.direzione)
@@ -50,5 +51,5 @@ class MacchinaDiTuring:
                 print(self.nastro._nastro[i], end="")
 
         print("]")
-        time.sleep(0.5)
+        time.sleep(0.10)
         os.system('cls')
