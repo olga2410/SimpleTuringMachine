@@ -12,5 +12,5 @@ class Stato:
         self.tipo = tipo_stato
 
     # Per stampare le clssi per debuggare/capire
-    # def __str__(self):
-    #     return str(self.id) + " " + str(self.tipo)
+    def __str__(self):
+        return str(self.id) + " " + str(self.tipo)
