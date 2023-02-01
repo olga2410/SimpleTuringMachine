@@ -14,8 +14,8 @@ lettere = [i for i in "abcdefghilmnopqrstuvz"]
 random.shuffle(lettere)
 ipotesi = ''.join(lettere)
 parola = "supercalifragilistichespiralidoso"
-alfabeto = "abcdefghilmnopqrstuvzx@|-*"
-input = ipotesi+"|"+"@@@@@@|"+parola
+alfabeto = "abcdefghilmnopqrstuvzx@|-*"+"$#"
+input = "$"+ipotesi+"|"+"@@@@@@|"+parola+"#"
 
 
 

@@ -2,7 +2,7 @@ from direzione import Direzione
 
 class Nastro:
     def __init__(self, parola, alfabeto):
-        self.alfabeto = alfabeto + "$#"
+        self.alfabeto = alfabeto #+ "#"
         self.posizione_testa = 0
         self.__init_nastro(parola)
 
@@ -11,21 +11,21 @@ class Nastro:
     #     return ''.join(self._nastro)
 
     def __init_nastro(self, parola):
-        nastro = "$"
+        nastro = ""
         #for carattere in (c for c in parola if c in self.alfabeto):
         for carattere in parola:
             if carattere in self.alfabeto:
                 nastro += carattere
-        nastro += "#"
+        # nastro += "#"
         self._nastro = list(nastro)
 
     def scrivi(self, carattere):
         if self.posizione_testa < 0 or carattere not in self.alfabeto:
             return
         self._nastro[self.posizione_testa] = carattere
-        indice_ultimo_elemento= len(self._nastro) - 1
-        if self.posizione_testa == indice_ultimo_elemento:
-            self._nastro += '#'
+        # indice_ultimo_elemento= len(self._nastro) - 1
+        # if self.posizione_testa == indice_ultimo_elemento:
+        #     self._nastro += '#'
 
     def leggi(self):
         if self.posizione_testa < 0 or self.posizione_testa > len(self._nastro) - 1:
@@ -42,8 +42,8 @@ class Nastro:
         elif direzione == Direzione.Sinistra:
             self.posizione_testa -= 1
         # Questi due if penso che siano più per "errore", al momento non mi viene in mento un motivo del perché la testa dovrebbe essere più lunga della lunghezza del nastro o più piccolo di 0
-        if self.posizione_testa > len(self._nastro) - 1:
-            self._nastro += "#"
+        # if self.posizione_testa > len(self._nastro) - 1:
+        #     self._nastro += "#"
         if self.posizione_testa < 0:
             self.posizione_testa = 0
 

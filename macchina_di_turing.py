@@ -52,5 +52,5 @@ class MacchinaDiTuring:
                 print(self.nastro._nastro[i], end="")
 
         print("]")
-        # time.sleep(0.10)
+        time.sleep(1.0)
         os.system('cls')
