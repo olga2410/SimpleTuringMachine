@@ -1,4 +1,4 @@
-from stato import TipoStato
+from .stato import TipoStato
 import time
 
 # Le due righe seguenti sono per far funzionare la stampa del log su windows
@@ -18,7 +18,7 @@ class MacchinaDiTuring:
     def get_stato_iniziale(self):
         return next(stato for stato in self.stati if stato.tipo == TipoStato.Iniziale)
 
-    def processa(self, verboso=False):
+    def processa(self):
         stato_corrente = self.stato_iniziale
         passo = 0
         self._log_processo(passo)
@@ -26,11 +26,6 @@ class MacchinaDiTuring:
         while stato_corrente.tipo != TipoStato.Finale:
             carattere_corrente = self.nastro.leggi()
             id_stato = stato_corrente.id
-            # quello che stiamo facendo qua sotto è praticamente una list comprheantion per trovare l'elemetno giusto: praticamente gli diciamo di ritornare l'elemento della lista
-            # delle transizioni che corrisponde alla transizione che ci serve. Usiamo next, perché la list comprheantion ritorna una lista, noi vogliamo l'elemento e next ci da il
-            # primo elemento della lista la prima volta che lo usiamo. Succede la stessa cosa nello stato
-            # list comprehensions  per ripassare:
-            # new_lista = [funzione(x) for x in lista if filtro]
             transizione = next(t for t in self.transizioni if t.stato_corrente == id_stato and t.carattere_corrente == carattere_corrente)
             print(transizione)
             stato_corrente = next(stato for stato in self.stati if stato.id == transizione.nuovo_stato)
@@ -52,5 +47,5 @@ class MacchinaDiTuring:
                 print(self.nastro._nastro[i], end="")
 
         print("]")
-        time.sleep(1.0)
+        # time.sleep(1.0)
         os.system('cls')

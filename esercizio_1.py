@@ -1,8 +1,8 @@
-from macchina_di_turing import MacchinaDiTuring
-from stato import Stato, TipoStato
-from transizione import Transizione
-from direzione import Direzione
-from nastro import Nastro
+from CodiceMacchina.macchina_di_turing import MacchinaDiTuring
+from CodiceMacchina.stato import Stato, TipoStato
+from CodiceMacchina.istruzione import Istruzione
+from CodiceMacchina.direzione import Direzione
+from CodiceMacchina.nastro import Nastro
 
 nastro = Nastro("|||*****", "|*")
 stati = [
@@ -12,9 +12,9 @@ stati = [
     Stato("sf", TipoStato.Finale)
 ]
 transizioni = [
-    Transizione("s1", "|", "s1", "|", Direzione.Destra),
-    Transizione("s1", "*", "s2", "|", Direzione.Destra),
-    Transizione("s2", "*", "sf", "|", Direzione.Neutrale)
+    Istruzione("s1", "|", "s1", "|", Direzione.Destra),
+    Istruzione("s1", "*", "s2", "|", Direzione.Destra),
+    Istruzione("s2", "*", "sf", "|", Direzione.Neutrale)
 ]
 
 mt = MacchinaDiTuring(stati, transizioni, nastro)

@@ -1,0 +1,1 @@
+Un'implementazione di una semplice macchina di Turing in python con esempi di programmi.

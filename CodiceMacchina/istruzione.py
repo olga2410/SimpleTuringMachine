@@ -1,6 +1,5 @@
-from stato import Stato
 
-class Transizione:
+class Istruzione:
     def __init__(self, stato_corrente, carattere_corrente, nuovo_stato, nuovo_carattere, direzione):
         self.stato_corrente = stato_corrente
         self.carattere_corrente = carattere_corrente

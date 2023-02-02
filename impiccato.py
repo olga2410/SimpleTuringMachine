@@ -1,8 +1,8 @@
-from macchina_di_turing import MacchinaDiTuring
-from stato import Stato, TipoStato
-from transizione import Transizione
-from direzione import Direzione
-from nastro import Nastro
+from CodiceMacchina.macchina_di_turing import MacchinaDiTuring
+from CodiceMacchina.stato import Stato, TipoStato
+from CodiceMacchina.istruzione import Istruzione
+from CodiceMacchina.direzione import Direzione
+from CodiceMacchina.nastro import Nastro
 import random
 
 
@@ -13,7 +13,7 @@ lettere = [i for i in "abcdefghilmnopqrstuvz"]
 # lettere = [i for i in "cobaisz"]
 random.shuffle(lettere)
 ipotesi = ''.join(lettere)
-parola = "supercalifragilistichespiralidoso"
+parola = "ciao"
 alfabeto = "abcdefghilmnopqrstuvzx@|-*"+"$#"
 input = "$"+ipotesi+"|"+"@@@@@@|"+parola+"#"
 
@@ -42,49 +42,49 @@ scorri = []
 for i in parola:
     for j in alfabeto:
         if j != i and j != "#" and j != "-":
-            scorri.append(Transizione("s"+i, j, "s"+i, j, Direzione.Destra))
+            scorri.append(Istruzione("s"+i, j, "s"+i, j, Direzione.Destra))
 
 
 scorri_vittoria = []
 for i in parola:
     for j in parola:
         if i != j:
-            scorri_vittoria.append(Transizione("s2"+i, j, "s3"+i, j, Direzione.Destra))
+            scorri_vittoria.append(Istruzione("s2"+i, j, "s3"+i, j, Direzione.Destra))
 
 scorri_vittoria_3 = []
 for i in parola:
     for j in alfabeto:
         if i != j:
-            scorri_vittoria_3.append(Transizione("s3"+i, j, "s3"+i, j, Direzione.Destra))
+            scorri_vittoria_3.append(Istruzione("s3"+i, j, "s3"+i, j, Direzione.Destra))
 
 
 transizioni = [
-    Transizione("s0", "$", "s1", "$", Direzione.Destra),
-    Transizione("s1", "|", "sfin", "|", Direzione.Neutrale),
-    Transizione("s3", "*", "s1", "*", Direzione.Destra),
-    Transizione("s4", "@", "s5", "x", Direzione.Destra),
-    Transizione("s4", "x", "s6", "x", Direzione.Destra),
-    Transizione("s6", "x", "s6", "x", Direzione.Destra),
-    Transizione("s6", "@", "s5", "x", Direzione.Destra),
-    Transizione("s6", "|", "sfin", "|", Direzione.Neutrale),
-    Transizione("s5", "-", "s5", "-", Direzione.Destra),
-    Transizione("s5", "#", "sfin", "#", Direzione.Neutrale),
-    Transizione("s5", "@", "s5", "@", Direzione.Destra),
-    Transizione("s5", "|", "s5", "|", Direzione.Destra)
+    Istruzione("s0", "$", "s1", "$", Direzione.Destra),
+    Istruzione("s1", "|", "sfin", "|", Direzione.Neutrale),
+    Istruzione("s3", "*", "s1", "*", Direzione.Destra),
+    Istruzione("s4", "@", "s5", "x", Direzione.Destra),
+    Istruzione("s4", "x", "s6", "x", Direzione.Destra),
+    Istruzione("s6", "x", "s6", "x", Direzione.Destra),
+    Istruzione("s6", "@", "s5", "x", Direzione.Destra),
+    Istruzione("s6", "|", "sfin", "|", Direzione.Neutrale),
+    Istruzione("s5", "-", "s5", "-", Direzione.Destra),
+    Istruzione("s5", "#", "sfin", "#", Direzione.Neutrale),
+    Istruzione("s5", "@", "s5", "@", Direzione.Destra),
+    Istruzione("s5", "|", "s5", "|", Direzione.Destra)
 
-] + [Transizione("s1", i, "s"+i, "*", Direzione.Destra) for i in parola] + \
-    [Transizione("s"+i, i, "s"+i, "-", Direzione.Destra) for i in parola] + \
-    [Transizione("s"+i, "#", "s3", "#", Direzione.Sinistra) for i in parola] + \
-    [Transizione("s1", i, "s4", "*", Direzione.Destra) for i in lettere_sbagliate] + \
-    [Transizione("s4", i, "s4", i, Direzione.Destra) for i in [j for j in alfabeto if j != "@" and j != "x"]] + \
-    [Transizione("s3", i, "s3", i, Direzione.Sinistra) for i in [j for j in alfabeto if j != "*"]] + \
-    [Transizione("s5", i, "s3", i, Direzione.Sinistra) for i in parola] + \
-    [Transizione("s2"+i, i, "s2"+i, "-", Direzione.Destra) for i in parola] + \
-    [Transizione("s2"+i, "-", "s2"+i, "-", Direzione.Destra) for i in parola] + \
-    [Transizione("s"+i, "-", "s2"+i, "-", Direzione.Destra) for i in parola] + \
-    [Transizione("s2"+i, "#", "sfin", "#", Direzione.Neutrale) for i in parola] + \
-    [Transizione("s3"+i, i, "s3"+i, "-", Direzione.Destra) for i in parola] + \
-    [Transizione("s3"+i, "#", "s3", "#", Direzione.Sinistra) for i in parola]
+] + [Istruzione("s1", i, "s"+i, "*", Direzione.Destra) for i in parola] + \
+    [Istruzione("s"+i, i, "s"+i, "-", Direzione.Destra) for i in parola] + \
+    [Istruzione("s"+i, "#", "s3", "#", Direzione.Sinistra) for i in parola] + \
+    [Istruzione("s1", i, "s4", "*", Direzione.Destra) for i in lettere_sbagliate] + \
+    [Istruzione("s4", i, "s4", i, Direzione.Destra) for i in [j for j in alfabeto if j != "@" and j != "x"]] + \
+    [Istruzione("s3", i, "s3", i, Direzione.Sinistra) for i in [j for j in alfabeto if j != "*"]] + \
+    [Istruzione("s5", i, "s3", i, Direzione.Sinistra) for i in parola] + \
+    [Istruzione("s2"+i, i, "s2"+i, "-", Direzione.Destra) for i in parola] + \
+    [Istruzione("s2"+i, "-", "s2"+i, "-", Direzione.Destra) for i in parola] + \
+    [Istruzione("s"+i, "-", "s2"+i, "-", Direzione.Destra) for i in parola] + \
+    [Istruzione("s2"+i, "#", "sfin", "#", Direzione.Neutrale) for i in parola] + \
+    [Istruzione("s3"+i, i, "s3"+i, "-", Direzione.Destra) for i in parola] + \
+    [Istruzione("s3"+i, "#", "s3", "#", Direzione.Sinistra) for i in parola]
 
 
 transizioni = transizioni + scorri + scorri_vittoria + scorri_vittoria_3
